@@ -467,3 +467,27 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+
+.grid {
+  display: grid;
+}
+
+.h-52 {
+  height: 13rem;
+}
+
+.w-52 {
+  width: 13rem;
+}
+
+.grid-cols-board {
+  grid-template-columns: 100px 100px 100px;
+}
+
+.grid-rows-board {
+  grid-template-rows: 100px 100px 100px;
+}
+
+.border-2 {
+  border-width: 2px;
+}
