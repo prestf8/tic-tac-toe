@@ -5,13 +5,16 @@ var tiles = document.querySelectorAll('span[id^="tile"]');
 // event listener to each tile to call a function that alters board  for each click
 // function to keep players from playing in spots already taken
 
-
 // utility functions that aren't organized
 tiles.forEach((tile) =>
   tile.addEventListener("click", function () {
     if (!checkChosenTile(this)) return;
 
-    tile.textContent = "ok";
+    const tileIdNumber = parseInt(this.id.charAt(this.id.length - 1));
+
+    gameBoard.board[tileIdNumber - 1] = "ok";
+
+    displayController.renderBoard();
   })
 );
 
