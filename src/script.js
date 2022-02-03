@@ -1,6 +1,19 @@
 var tiles = document.querySelectorAll('span[id^="tile"]');
 
-// const gameController = (() => {})();
+const gameController = (() => {
+  let currentMark = "X";
+  const getCurrentMark = () => currentMark;
+
+  function toggleCurrentMark() {
+    if (currentMark === "X") {
+      currentMark = "O";
+    } else {
+      currentMark = "X";
+    }
+  }
+
+  return { toggleCurrentMark, getCurrentMark };
+})();
 
 // event listener to each tile to call a function that alters board  for each click
 // function to keep players from playing in spots already taken
@@ -13,7 +26,7 @@ const gameBoard = (() => {
   let board = ["", "", "", "", "", "", "", "", ""];
 
   function alterBoardArr(tileIdNumber) {
-    board[tileIdNumber - 1] = "ok";
+    board[tileIdNumber - 1] = gameController.getCurrentMark();
   }
 
   function checkChosenTile(tile) {
@@ -28,6 +41,8 @@ const gameBoard = (() => {
     if (!checkChosenTile(this)) return;
 
     alterBoardArr(parseInt(this.id.charAt(this.id.length - 1)));
+
+    gameController.toggleCurrentMark(); // after user chooses spot, change the current mark
 
     displayController.renderBoard();
   }
