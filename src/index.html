@@ -9,17 +9,23 @@
     <link rel="stylesheet" href="/dist/output.css">
 </head>
 
-<body>
-    <section id="board" class="grid grid-cols-board grid-rows-board h-52 w-52">
-        <span id="tile-1" class="border-2"></span>
-        <span id="tile-2" class="border-2"></span>
-        <span id="tile-3" class="border-2"></span>
-        <span id="tile-4" class="border-2"></span>
-        <span id="tile-5" class="border-2"></span>
-        <span id="tile-6" class="border-2"></span>
-        <span id="tile-7" class="border-2"></span>
-        <span id="tile-8" class="border-2"></span>
-        <span id="tile-9" class="border-2"></span>
+<body class="bg-gray-900 flex flex-col items-center justify-center">
+    <div class="text-center text-6xl">
+        <span
+            class="inline-block border-8 border-emerald-800 text-orange-200 w-24 h-24 leading-score bg-red-300">X</span>
+        <span class="inline-block leading-score w-24 h-24 ">O</span>
+    </div>
+    <section id="board"
+        class="grid grid-cols-board grid-rows-board bg-emerald-200 text-center text-9xl select-none	">
+        <span id="tile-1" class="border-8 border-gray-900 leading-cell "></span>
+        <span id="tile-2" class="border-8 border-gray-900 leading-cell "></span>
+        <span id="tile-3" class="border-8 border-gray-900 leading-cell "></span>
+        <span id="tile-4" class="border-8 border-gray-900 leading-cell "></span>
+        <span id="tile-5" class="border-8 border-gray-900 leading-cell "></span>
+        <span id="tile-6" class="border-8 border-gray-900 leading-cell "></span>
+        <span id="tile-7" class="border-8 border-gray-900 leading-cell "></span>
+        <span id="tile-8" class="border-8 border-gray-900 leading-cell "></span>
+        <span id="tile-9" class="border-8 border-gray-900 leading-cell "></span>
     </section>
 
 

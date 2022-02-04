@@ -3,10 +3,14 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        board: "100px 100px 100px",
+        board: "200px 200px 200px",
       },
       gridTemplateRows: {
-        board: "100px 100px 100px",
+        board: "200px 200px 200px",
+      },
+      lineHeight: {
+        cell: "170px",
+        score: "72px",
       },
     },
   },
