@@ -10,13 +10,14 @@
 </head>
 
 <body class="bg-gray-900 flex flex-col items-center justify-center">
-    <div class="text-center text-6xl">
-        <span
-            class="inline-block border-8 border-emerald-800 text-orange-200 w-24 h-24 leading-score bg-red-300">X</span>
-        <span class="inline-block leading-score w-24 h-24 ">O</span>
+    <div class="text-center text-6xl mb-8 pt-12">
+        <span id="x-decor"
+            class="inline-block text-gray-900 bg-emerald-200 w-24 h-24 leading-score">X</span>
+        <span id="o-decor"
+            class="inline-block text-gray-100 opacity-10 leading-score w-24 h-24">O</span>
     </div>
     <section id="board"
-        class="grid grid-cols-board grid-rows-board bg-emerald-200 text-center text-9xl select-none	">
+        class="grid grid-cols-board grid-rows-board bg-emerald-200 text-center text-9xl select-none	text-gray-900">
         <span id="tile-1" class="border-8 border-gray-900 leading-cell "></span>
         <span id="tile-2" class="border-8 border-gray-900 leading-cell "></span>
         <span id="tile-3" class="border-8 border-gray-900 leading-cell "></span>

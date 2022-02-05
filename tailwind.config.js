@@ -10,7 +10,7 @@ module.exports = {
       },
       lineHeight: {
         cell: "170px",
-        score: "72px",
+        score: "90px",
       },
     },
   },

@@ -43,7 +43,7 @@ const gameBoard = (() => {
     alterBoardArr(parseInt(this.id.charAt(this.id.length - 1)));
 
     gameController.toggleCurrentMark(); // after user chooses spot, change the current mark
-
+    displayController.renderCurrentSignDisplay(); // toggle sign change display
     displayController.renderBoard();
   }
 
@@ -60,7 +60,25 @@ const displayController = (() => {
       tiles[i].textContent = gameBoard.board[i];
     }
   }
-  return { renderBoard };
+
+  function renderCurrentSignDisplay() {
+    const xDecor = document.getElementById("x-decor");
+    const oDecor = document.getElementById("o-decor");
+    let currentSignDecorClasses = ["text-gray-900", "bg-emerald-200"];
+    let alternativeSignDecorClasses = ["text-gray-100", "opacity-10"];
+    if (gameController.getCurrentMark() === "X") {
+      xDecor.classList.remove(...alternativeSignDecorClasses);
+      xDecor.classList.add(...currentSignDecorClasses);
+      oDecor.classList.remove(...currentSignDecorClasses);
+      oDecor.classList.add(...alternativeSignDecorClasses);
+    } else {
+      oDecor.classList.remove(...alternativeSignDecorClasses);
+      oDecor.classList.add(...currentSignDecorClasses);
+      xDecor.classList.remove(...currentSignDecorClasses);
+      xDecor.classList.add(...alternativeSignDecorClasses);
+    }
+  }
+  return { renderBoard, renderCurrentSignDisplay };
 })();
 
 // FACTORY METHODS
