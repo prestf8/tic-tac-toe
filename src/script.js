@@ -12,7 +12,24 @@ const gameController = (() => {
     }
   }
 
-  return { toggleCurrentMark, getCurrentMark };
+  function checkPlayerWins() {
+    const winConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [6, 4, 2],
+    ];
+
+    return winConditions.some((win) => {
+      return win.every((cellId) => gameBoard.board[cellId] === currentMark);
+    });
+  }
+
+  return { toggleCurrentMark, getCurrentMark, checkPlayerWins };
 })();
 
 // event listener to each tile to call a function that alters board  for each click
@@ -42,9 +59,14 @@ const gameBoard = (() => {
 
     alterBoardArr(parseInt(this.id.charAt(this.id.length - 1)));
 
+    displayController.renderBoard();
+    if (gameController.checkPlayerWins()) {
+      console.log(gameController.getCurrentMark());
+      return;
+    }
+
     gameController.toggleCurrentMark(); // after user chooses spot, change the current mark
     displayController.renderCurrentSignDisplay(); // toggle sign change display
-    displayController.renderBoard();
   }
 
   function initializeBoard() {
