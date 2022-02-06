@@ -5,6 +5,10 @@ const gameController = (() => {
   let currentMark = "X";
   const getCurrentMark = () => currentMark;
 
+  function resetGame() {
+    currentMark = "X";
+  }
+
   function toggleCurrentMark() {
     if (currentMark === "X") {
       currentMark = "O";
@@ -40,7 +44,13 @@ const gameController = (() => {
     }
   }
 
-  return { toggleCurrentMark, getCurrentMark, checkGameOver, checkGameTie };
+  return {
+    resetGame,
+    toggleCurrentMark,
+    getCurrentMark,
+    checkGameOver,
+    checkGameTie,
+  };
 })();
 
 // event listener to each tile to call a function that alters board  for each click
@@ -85,7 +95,13 @@ const gameBoard = (() => {
     tiles.forEach((tile) => tile.addEventListener("click", updateTile));
   }
 
-  return { board, initializeBoard };
+  function resetBoard() {
+    for (let i = 0; i < board.length; i++) {
+      board[i] = "";
+    }
+  }
+
+  return { board, initializeBoard, resetBoard };
 })();
 
 const displayController = (() => {
@@ -93,6 +109,17 @@ const displayController = (() => {
     for (let i = 0; i < 9; i++) {
       tiles[i].textContent = gameBoard.board[i];
     }
+  }
+
+  function resetCurrentSignDisplay() {
+    const xDecor = document.getElementById("x-decor");
+    const oDecor = document.getElementById("o-decor");
+    let currentSignDecorClasses = ["text-gray-900", "bg-emerald-200"];
+    let alternativeSignDecorClasses = ["text-gray-100", "opacity-10"];
+    xDecor.classList.remove(...alternativeSignDecorClasses);
+    xDecor.classList.add(...currentSignDecorClasses);
+    oDecor.classList.remove(...currentSignDecorClasses);
+    oDecor.classList.add(...alternativeSignDecorClasses);
   }
 
   function renderCurrentSignDisplay() {
@@ -122,7 +149,30 @@ const displayController = (() => {
     }
   }
 
-  return { renderBoard, renderCurrentSignDisplay, displayGameResults };
+  function resetGameResults() {
+    const gameStatus = document.getElementById("game-status-value");
+    gameStatus.textContent = "";
+  }
+
+  function initializeRestartButton() {
+    const restartBtn = document.getElementById("restart-btn");
+    restartBtn.addEventListener("click", function () {
+      gameBoard.resetBoard();
+      resetGameResults();
+      gameController.resetGame();
+      gameOver = false;
+      console.log(gameBoard.board);
+      renderBoard();
+      resetCurrentSignDisplay();
+    });
+  }
+
+  return {
+    renderBoard,
+    renderCurrentSignDisplay,
+    displayGameResults,
+    initializeRestartButton,
+  };
 })();
 
 // FACTORY METHODS
@@ -152,3 +202,4 @@ const player = (mark) => {
 // player2.toggleTurn();
 
 gameBoard.initializeBoard();
+displayController.initializeRestartButton();
