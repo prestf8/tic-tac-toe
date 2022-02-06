@@ -114,10 +114,11 @@ const displayController = (() => {
   }
 
   function displayGameResults() {
+    const gameStatus = document.getElementById("game-status-value");
     if (gameController.checkGameTie()) {
-      console.log("TIE");
+      gameStatus.textContent = "TIE";
     } else {
-      console.log(`${gameController.getCurrentMark()} WINS!`);
+      gameStatus.textContent = `${gameController.getCurrentMark()} WINS!`;
     }
   }
 
