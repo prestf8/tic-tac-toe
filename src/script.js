@@ -85,6 +85,7 @@ const gameBoard = (() => {
     if (gameController.checkGameOver()) {
       gameOver = true;
       displayController.displayGameResults();
+      displayController.toggleRestartButtonVisibility();
     }
 
     gameController.toggleCurrentMark(); // after user chooses spot, change the current mark
@@ -161,10 +162,15 @@ const displayController = (() => {
       resetGameResults();
       gameController.resetGame();
       gameOver = false;
-      console.log(gameBoard.board);
       renderBoard();
       resetCurrentSignDisplay();
+      toggleRestartButtonVisibility();
     });
+  }
+
+  function toggleRestartButtonVisibility() {
+    const restartBtn = document.getElementById("restart-btn");
+    restartBtn.classList.toggle("hidden");
   }
 
   return {
@@ -172,34 +178,13 @@ const displayController = (() => {
     renderCurrentSignDisplay,
     displayGameResults,
     initializeRestartButton,
+    toggleRestartButtonVisibility,
   };
 })();
 
-// FACTORY METHODS
 const player = (mark) => {
   let turn = false;
-  // const getMark = () => mark;
-  // const getTurn = () => turn;
-  // const toggleTurn = () => {
-  //   turn = !turn;
-  // };
-  // return object
-
-  // return {
-  //   getMark,
-  //   getTurn,
-  //   toggleTurn,
-  // };
 };
-
-// const player1 = player("X");
-// player1.toggleTurn(); // player 1 goes first;
-
-// const player2 = player("O");
-
-// console.log(player1.getTurn(), player2.getTurn());
-// player1.toggleTurn();
-// player2.toggleTurn();
 
 gameBoard.initializeBoard();
 displayController.initializeRestartButton();
