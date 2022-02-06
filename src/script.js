@@ -1,4 +1,5 @@
 var tiles = document.querySelectorAll('span[id^="tile"]');
+let gameOver = false;
 
 const gameController = (() => {
   let currentMark = "X";
@@ -10,6 +11,10 @@ const gameController = (() => {
     } else {
       currentMark = "X";
     }
+  }
+
+  function checkGameTie() {
+    return gameBoard.board.every((tile) => tile);
   }
 
   function checkPlayerWins() {
@@ -25,11 +30,17 @@ const gameController = (() => {
     ];
 
     return winConditions.some((win) => {
-      return win.every((cellId) => gameBoard.board[cellId] === currentMark);
+      return win.every((tileId) => gameBoard.board[tileId] === currentMark);
     });
   }
 
-  return { toggleCurrentMark, getCurrentMark, checkPlayerWins };
+  function checkGameOver() {
+    if (checkPlayerWins() || checkGameTie()) {
+      return true;
+    }
+  }
+
+  return { toggleCurrentMark, getCurrentMark, checkGameOver, checkGameTie };
 })();
 
 // event listener to each tile to call a function that alters board  for each click
@@ -48,21 +59,22 @@ const gameBoard = (() => {
 
   function checkChosenTile(tile) {
     if (tile.textContent) {
-      console.log("already");
       return false; // if spot is already taken don't
     }
     return true;
   }
 
   function updateTile() {
+    if (gameOver) return;
     if (!checkChosenTile(this)) return;
 
     alterBoardArr(parseInt(this.id.charAt(this.id.length - 1)));
 
     displayController.renderBoard();
-    if (gameController.checkPlayerWins()) {
-      console.log(gameController.getCurrentMark());
-      return;
+
+    if (gameController.checkGameOver()) {
+      gameOver = true;
+      displayController.displayGameResults();
     }
 
     gameController.toggleCurrentMark(); // after user chooses spot, change the current mark
@@ -100,7 +112,16 @@ const displayController = (() => {
       xDecor.classList.add(...alternativeSignDecorClasses);
     }
   }
-  return { renderBoard, renderCurrentSignDisplay };
+
+  function displayGameResults() {
+    if (gameController.checkGameTie()) {
+      console.log("TIE");
+    } else {
+      console.log(`${gameController.getCurrentMark()} WINS!`);
+    }
+  }
+
+  return { renderBoard, renderCurrentSignDisplay, displayGameResults };
 })();
 
 // FACTORY METHODS
