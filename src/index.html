@@ -9,22 +9,22 @@
     <link rel="stylesheet" href="/dist/output.css">
 </head>
 
-<body class="bg-gray-900 flex flex-col items-center justify-center pb-20">
-    <p class="text-white fixed bottom-0 left-0 w-full bg-red-300 px-2 bg-gray-800">Created by
+<body class="bg-gray-900 flex flex-col items-center justify-center">
+    <p class="text-white fixed bottom-0 left-0 w-full bg-red-300 p-2 bg-gray-800">Created by
         <a target="_blank" class="font-bold" href="https://github.com/prestf8">prestf8</a>
     </p>
-    <div class="text-center text-6xl mb-8 pt-12">
+    <div class="text-center text-4xl pt-8">
         <span id="x-decor"
-            class="inline-block text-gray-900 bg-emerald-200 w-24 h-24 leading-score">X</span>
+            class="inline-block text-gray-900 bg-emerald-200 w-16 h-16 leading-score">X</span>
         <span id="o-decor"
-            class="inline-block text-gray-100 opacity-10 leading-score w-24 h-24">O</span>
+            class="inline-block text-gray-100 opacity-10 leading-score w-16 h-16">O</span>
     </div>
     <div>
-        <p class="text-emerald-200 text-3xl my-6">Game Status: <span id="game-status-value"></span>
+        <p class="text-emerald-200 text-2xl my-4">Game Status: <span id="game-status-value"></span>
         </p>
     </div>
     <section id="board"
-        class="grid grid-cols-board grid-rows-board bg-emerald-200 text-center text-9xl select-none	text-gray-900">
+        class="grid grid-cols-board grid-rows-board bg-emerald-200 text-center text-6xl select-none	text-gray-900">
         <span id="tile-1" class="border-8 border-gray-900 leading-cell "></span>
         <span id="tile-2" class="border-8 border-gray-900 leading-cell "></span>
         <span id="tile-3" class="border-8 border-gray-900 leading-cell "></span>
@@ -37,7 +37,7 @@
     </section>
 
     <button id="restart-btn"
-        class="hidden text-gray-900 bg-emerald-200 py-4 px-6 text-xl mt-6">Restart</button>
+        class="hidden text-gray-900 bg-emerald-200 py-4 px-6 text-xl mt-4">Restart</button>
 
 
     <script src="script.js" defer></script>
